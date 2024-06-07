@@ -1,0 +1,547 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "695c3d04-7f0e-48f3-a6cb-d8d90080aec4",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "id": "332e9a3d-f7c8-4813-9483-e89a83269ef4",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "\n",
+    "df = pd.read_csv('platinum_prices.csv')\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 20,
+   "id": "e4375364-1119-4057-9901-ab9b52e12395",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "(720, 7)"
+      ]
+     },
+     "execution_count": 20,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.shape"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 24,
+   "id": "b7ef591c-c512-44fa-beed-729b229d8223",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Date</th>\n",
+       "      <th>platinum_oz_usd_price</th>\n",
+       "      <th>platinum_kg_usd_price</th>\n",
+       "      <th>platinum_oz_gbp_price</th>\n",
+       "      <th>platinum_kg_gbp_price</th>\n",
+       "      <th>platinum_oz_eur_price</th>\n",
+       "      <th>platinum_kg_eur_price</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>1990-04-02 09:00:00+00:00</td>\n",
+       "      <td>471.00</td>\n",
+       "      <td>15142.98</td>\n",
+       "      <td>289.65</td>\n",
+       "      <td>9312.45</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>NaN</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>1990-04-30 09:00:00+00:00</td>\n",
+       "      <td>472.25</td>\n",
+       "      <td>15183.17</td>\n",
+       "      <td>289.55</td>\n",
+       "      <td>9309.24</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>NaN</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>1990-05-01 09:00:00+00:00</td>\n",
+       "      <td>473.25</td>\n",
+       "      <td>15215.32</td>\n",
+       "      <td>288.75</td>\n",
+       "      <td>9283.51</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>NaN</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>1990-05-30 09:00:00+00:00</td>\n",
+       "      <td>496.50</td>\n",
+       "      <td>15962.82</td>\n",
+       "      <td>291.45</td>\n",
+       "      <td>9370.32</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>NaN</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>1990-06-01 09:00:00+00:00</td>\n",
+       "      <td>490.00</td>\n",
+       "      <td>15753.84</td>\n",
+       "      <td>292.00</td>\n",
+       "      <td>9388.00</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>NaN</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "                        Date  platinum_oz_usd_price  platinum_kg_usd_price  \\\n",
+       "0  1990-04-02 09:00:00+00:00                 471.00               15142.98   \n",
+       "1  1990-04-30 09:00:00+00:00                 472.25               15183.17   \n",
+       "2  1990-05-01 09:00:00+00:00                 473.25               15215.32   \n",
+       "3  1990-05-30 09:00:00+00:00                 496.50               15962.82   \n",
+       "4  1990-06-01 09:00:00+00:00                 490.00               15753.84   \n",
+       "\n",
+       "   platinum_oz_gbp_price  platinum_kg_gbp_price  platinum_oz_eur_price  \\\n",
+       "0                 289.65                9312.45                    NaN   \n",
+       "1                 289.55                9309.24                    NaN   \n",
+       "2                 288.75                9283.51                    NaN   \n",
+       "3                 291.45                9370.32                    NaN   \n",
+       "4                 292.00                9388.00                    NaN   \n",
+       "\n",
+       "   platinum_kg_eur_price  \n",
+       "0                    NaN  \n",
+       "1                    NaN  \n",
+       "2                    NaN  \n",
+       "3                    NaN  \n",
+       "4                    NaN  "
+      ]
+     },
+     "execution_count": 24,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 26,
+   "id": "dc21abde-d0c1-466e-bcd4-230158b813aa",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Date</th>\n",
+       "      <th>platinum_oz_usd_price</th>\n",
+       "      <th>platinum_kg_usd_price</th>\n",
+       "      <th>platinum_oz_gbp_price</th>\n",
+       "      <th>platinum_kg_gbp_price</th>\n",
+       "      <th>platinum_oz_eur_price</th>\n",
+       "      <th>platinum_kg_eur_price</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>1990-04-02 09:00:00+00:00</td>\n",
+       "      <td>471.00</td>\n",
+       "      <td>15142.98</td>\n",
+       "      <td>289.65</td>\n",
+       "      <td>9312.45</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>NaN</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>1990-04-30 09:00:00+00:00</td>\n",
+       "      <td>472.25</td>\n",
+       "      <td>15183.17</td>\n",
+       "      <td>289.55</td>\n",
+       "      <td>9309.24</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>NaN</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>1990-05-01 09:00:00+00:00</td>\n",
+       "      <td>473.25</td>\n",
+       "      <td>15215.32</td>\n",
+       "      <td>288.75</td>\n",
+       "      <td>9283.51</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>NaN</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>1990-05-30 09:00:00+00:00</td>\n",
+       "      <td>496.50</td>\n",
+       "      <td>15962.82</td>\n",
+       "      <td>291.45</td>\n",
+       "      <td>9370.32</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>NaN</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>1990-06-01 09:00:00+00:00</td>\n",
+       "      <td>490.00</td>\n",
+       "      <td>15753.84</td>\n",
+       "      <td>292.00</td>\n",
+       "      <td>9388.00</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>NaN</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "                        Date  platinum_oz_usd_price  platinum_kg_usd_price  \\\n",
+       "0  1990-04-02 09:00:00+00:00                 471.00               15142.98   \n",
+       "1  1990-04-30 09:00:00+00:00                 472.25               15183.17   \n",
+       "2  1990-05-01 09:00:00+00:00                 473.25               15215.32   \n",
+       "3  1990-05-30 09:00:00+00:00                 496.50               15962.82   \n",
+       "4  1990-06-01 09:00:00+00:00                 490.00               15753.84   \n",
+       "\n",
+       "   platinum_oz_gbp_price  platinum_kg_gbp_price  platinum_oz_eur_price  \\\n",
+       "0                 289.65                9312.45                    NaN   \n",
+       "1                 289.55                9309.24                    NaN   \n",
+       "2                 288.75                9283.51                    NaN   \n",
+       "3                 291.45                9370.32                    NaN   \n",
+       "4                 292.00                9388.00                    NaN   \n",
+       "\n",
+       "   platinum_kg_eur_price  \n",
+       "0                    NaN  \n",
+       "1                    NaN  \n",
+       "2                    NaN  \n",
+       "3                    NaN  \n",
+       "4                    NaN  "
+      ]
+     },
+     "execution_count": 26,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.head(5)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 30,
+   "id": "bcce705e-4dd7-4f4c-b057-c6df5ffcbd13",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "<class 'pandas.core.frame.DataFrame'>\n",
+      "RangeIndex: 720 entries, 0 to 719\n",
+      "Data columns (total 7 columns):\n",
+      " #   Column                 Non-Null Count  Dtype  \n",
+      "---  ------                 --------------  -----  \n",
+      " 0   Date                   720 non-null    object \n",
+      " 1   platinum_oz_usd_price  715 non-null    float64\n",
+      " 2   platinum_kg_usd_price  715 non-null    float64\n",
+      " 3   platinum_oz_gbp_price  716 non-null    float64\n",
+      " 4   platinum_kg_gbp_price  716 non-null    float64\n",
+      " 5   platinum_oz_eur_price  537 non-null    float64\n",
+      " 6   platinum_kg_eur_price  537 non-null    float64\n",
+      "dtypes: float64(6), object(1)\n",
+      "memory usage: 39.5+ KB\n"
+     ]
+    }
+   ],
+   "source": [
+    "df.info()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 32,
+   "id": "fb0be5aa-8cba-4d58-8681-f380307be9a1",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Date                       0\n",
+       "platinum_oz_usd_price      5\n",
+       "platinum_kg_usd_price      5\n",
+       "platinum_oz_gbp_price      4\n",
+       "platinum_kg_gbp_price      4\n",
+       "platinum_oz_eur_price    183\n",
+       "platinum_kg_eur_price    183\n",
+       "dtype: int64"
+      ]
+     },
+     "execution_count": 32,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.isnull().sum()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 34,
+   "id": "2605d56d-df32-4aa7-8282-04126bde02ac",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>platinum_oz_usd_price</th>\n",
+       "      <th>platinum_kg_usd_price</th>\n",
+       "      <th>platinum_oz_gbp_price</th>\n",
+       "      <th>platinum_kg_gbp_price</th>\n",
+       "      <th>platinum_oz_eur_price</th>\n",
+       "      <th>platinum_kg_eur_price</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>count</th>\n",
+       "      <td>715.000000</td>\n",
+       "      <td>715.000000</td>\n",
+       "      <td>716.000000</td>\n",
+       "      <td>716.000000</td>\n",
+       "      <td>537.000000</td>\n",
+       "      <td>537.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>mean</th>\n",
+       "      <td>879.954559</td>\n",
+       "      <td>28291.155147</td>\n",
+       "      <td>571.929749</td>\n",
+       "      <td>18387.941760</td>\n",
+       "      <td>856.918250</td>\n",
+       "      <td>27550.521601</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>std</th>\n",
+       "      <td>431.035686</td>\n",
+       "      <td>13858.099121</td>\n",
+       "      <td>272.833632</td>\n",
+       "      <td>8771.792275</td>\n",
+       "      <td>227.711819</td>\n",
+       "      <td>7321.094394</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>min</th>\n",
+       "      <td>330.000000</td>\n",
+       "      <td>10609.730000</td>\n",
+       "      <td>175.400000</td>\n",
+       "      <td>5639.230000</td>\n",
+       "      <td>300.050000</td>\n",
+       "      <td>9646.820000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>25%</th>\n",
+       "      <td>432.125000</td>\n",
+       "      <td>13893.125000</td>\n",
+       "      <td>272.150000</td>\n",
+       "      <td>8749.815000</td>\n",
+       "      <td>696.250000</td>\n",
+       "      <td>22384.920000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>50%</th>\n",
+       "      <td>888.000000</td>\n",
+       "      <td>28549.820000</td>\n",
+       "      <td>625.265000</td>\n",
+       "      <td>20102.705000</td>\n",
+       "      <td>860.820000</td>\n",
+       "      <td>27675.970000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>75%</th>\n",
+       "      <td>1136.000000</td>\n",
+       "      <td>36523.200000</td>\n",
+       "      <td>770.672500</td>\n",
+       "      <td>24777.657500</td>\n",
+       "      <td>1001.090000</td>\n",
+       "      <td>32185.740000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>max</th>\n",
+       "      <td>2276.000000</td>\n",
+       "      <td>73174.990000</td>\n",
+       "      <td>1183.000000</td>\n",
+       "      <td>38034.280000</td>\n",
+       "      <td>1497.300000</td>\n",
+       "      <td>48139.240000</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "       platinum_oz_usd_price  platinum_kg_usd_price  platinum_oz_gbp_price  \\\n",
+       "count             715.000000             715.000000             716.000000   \n",
+       "mean              879.954559           28291.155147             571.929749   \n",
+       "std               431.035686           13858.099121             272.833632   \n",
+       "min               330.000000           10609.730000             175.400000   \n",
+       "25%               432.125000           13893.125000             272.150000   \n",
+       "50%               888.000000           28549.820000             625.265000   \n",
+       "75%              1136.000000           36523.200000             770.672500   \n",
+       "max              2276.000000           73174.990000            1183.000000   \n",
+       "\n",
+       "       platinum_kg_gbp_price  platinum_oz_eur_price  platinum_kg_eur_price  \n",
+       "count             716.000000             537.000000             537.000000  \n",
+       "mean            18387.941760             856.918250           27550.521601  \n",
+       "std              8771.792275             227.711819            7321.094394  \n",
+       "min              5639.230000             300.050000            9646.820000  \n",
+       "25%              8749.815000             696.250000           22384.920000  \n",
+       "50%             20102.705000             860.820000           27675.970000  \n",
+       "75%             24777.657500            1001.090000           32185.740000  \n",
+       "max             38034.280000            1497.300000           48139.240000  "
+      ]
+     },
+     "execution_count": 34,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.describe()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 36,
+   "id": "95bfc9ca-b56a-43d2-a9c6-5807a826acd9",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "0"
+      ]
+     },
+     "execution_count": 36,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.duplicated().sum()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "b9223c08-06e0-441f-9793-2e5d0772f631",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df."
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.11.5"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
